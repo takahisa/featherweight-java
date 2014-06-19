@@ -1,0 +1,12 @@
+fj: implementation of Fetherweight Java
+====
+
+## Requirement
+
+- OCaml >= 4.01.0
+- OMake
+- OUnit
+
+## Reference
+
+[1] Igarashi, Pierce, Wadler. Featherweight Java: A Minimal Core Calculus for Java and GJ. ACM Transactions on Programming Languages and Systems 2001.

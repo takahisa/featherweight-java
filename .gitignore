@@ -1,0 +1,6 @@
+*~
+*.omc
+*.cache
+/.omakedb
+/.omakedb.lock
+
