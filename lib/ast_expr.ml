@@ -25,4 +25,4 @@ type t =
 | FieldSet   of t * Id.t * t
 | MethodCall of t * Id.t * t list
 | New        of Id.t * t list
-| Cast       of Id.t * t
+| Cast       of Ast_type.t * t

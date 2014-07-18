@@ -19,10 +19,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *)
-type t = Id.t
+open OUnit
+open Ast
 
-let make (x : Id.t) : t =
-  x
+(* TODO: TypeChecker Test *)
 
-let name (t : t) : Id.t =
-  t
+let _ =
+  ()

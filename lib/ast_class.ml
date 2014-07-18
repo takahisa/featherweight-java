@@ -50,4 +50,4 @@ let ctors k =
   k.ctors
 
 let methods k =
-  k.ctors
+  k.methods
