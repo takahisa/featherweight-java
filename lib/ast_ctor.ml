@@ -21,7 +21,7 @@
  *)
 type t = {
   name       : Id.t;
-  params     : (Id.t *  Id.t) list;
+  params     : (Id.t * Ast_type.t) list;
   body       : Ast_expr.t list;
   super_init : Ast_expr.t list;
 }

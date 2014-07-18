@@ -21,7 +21,7 @@
  *)
 type t = {
   name : Id.t;
-  typ  : Id.t;
+  typ  : Ast_type.t;
 }
 
 let make ~name ~typ =

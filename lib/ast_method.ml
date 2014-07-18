@@ -21,9 +21,9 @@
  *)
 type t = {
   name     : Id.t;
-  params   : (Id.t * Id.t) list;
+  params   : (Id.t * Ast_type.t) list;
   body     : Ast_expr.t;
-  ret_type : Id.t;
+  ret_type : Ast_type.t;
 }
 
 let make ~name ~params ~body ~ret_type =

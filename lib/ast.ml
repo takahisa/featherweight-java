@@ -20,7 +20,8 @@
  * THE SOFTWARE.
  *)
 module Class  = Ast_class
-module Field  = Ast_field
+module Type   = Ast_type
 module Ctor   = Ast_ctor
+module Field  = Ast_field
 module Method = Ast_method
 module Expr   = Ast_expr

@@ -19,18 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *)
-type t = {
-  name    : Id.t;
-  super   : Ast_type.t;
-  fields  : Ast_field.t list;
-  ctors   : Ast_ctor.t list;
-  methods : Ast_method.t list;
-}
+type t = Id.t
 
-let make ~name ~super ~fields ~ctors ~methods
-= { name    = name;
-    super   = super;
-    fields  = fields;
-    ctors   = ctors;
-    methods = methods }
-
+let make (x : Id.t) : t =
+  x
