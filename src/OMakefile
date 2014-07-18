@@ -39,7 +39,7 @@ OCAMLCFLAGS += -g
 BYTE_ENABLED = true
 OCAML_BYTE_LINK_FLAGS +=
 
-OCAMLINCLUDES +=
+OCAMLINCLUDES += ../lib/
 
 FILES[] = $(removesuffix $(filter %.ml, $(ls R, ./)))
 

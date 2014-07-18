@@ -19,5 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *)
-let () =
-  Printf.printf "fjc: not implemented\n"
+
+let _ =
+  let files = ref [] in
+  Arg.parse
+    []
+    (fun file -> files := !files @ [file])
+    ("fjc: fetherweight java compiler Copyright(c) Takahisa Watanabe\n" ^
+     "  usage: fjc [<option>] <file0> <file1> ...\n");
+  List.iter begin fun f ->
+    let channel = open_in f in
+    try
+      let lexbuff = Lexing.from_channel channel in
+      TypeCheck.f (Parser.prog Lexer.token lexbuff)
+    with
+      e -> close_in channel; raise e
+  end !files
