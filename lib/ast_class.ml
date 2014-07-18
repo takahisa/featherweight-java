@@ -34,3 +34,20 @@ let make ~name ~super ~fields ~ctors ~methods
     ctors   = ctors;
     methods = methods }
 
+let typ k =
+  Ast_type.make k.name
+
+let name k =
+  k.name
+
+let super k =
+  k.super
+
+let fields k =
+  k.fields
+
+let ctors k =
+  k.ctors
+
+let methods k =
+  k.ctors

@@ -31,3 +31,15 @@ let make ~name ~params ~body ~super_init =
   params     = params;
   body       = body;
   super_init = super_init; }
+
+let name c =
+  c.name
+
+let params c =
+  c.params
+
+let body c =
+  c.body
+
+let super_init c =
+  c.super_init

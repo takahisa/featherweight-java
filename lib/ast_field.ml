@@ -27,3 +27,10 @@ type t = {
 let make ~name ~typ =
   { name = name;
     typ  = typ }
+
+let name f =
+  f.name
+
+let typ f =
+  f.typ
+

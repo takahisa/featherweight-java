@@ -32,3 +32,14 @@ let make ~name ~params ~body ~ret_type =
   body     = body;
   ret_type = ret_type; }
 
+let name m =
+  m.name
+
+let params m =
+  m.params
+
+let body m =
+  m.body
+
+let ret_type m =
+  m.ret_type
