@@ -183,6 +183,8 @@ let check_infinite_type ct t =
     check_infinite_type ct t (Class.super (class_of ct (Type.name t)))
 
 let rec check_ctor ct env k c =
+  if Class.name k <> Ctor.name c then
+    raise (Type_error "invalid constructor name.");
   let env' = L.fold_left (fun env (x0, t0) -> M.add x0 t0 env) env (Ctor.params c) in
   L.iter (fun e -> ignore (infer_expr ct env' e)) (Ctor.body c);
   if not (Class.typ k = base_klass_type) then
