@@ -107,14 +107,23 @@ let check_ambiguous ds =
   | d :: ds                  -> check_ambiguous (S.add d set) ds
   in
   check_ambiguous S.empty ds
- 
+
+let is_appliable_method ct m ts =
+  let ts' = L.map snd (Method.params m) in
+  L.length ts = L.length ts' && L.for_all2 (is_subclass ct) ts' ts'
+
+let rec findall_appliable_methods ct k x ts =
+  let rec findall_appliable_methods ct k x ts ms =
+    let ms' = L.filter (fun m -> is_appliable_method ct m ts) (Class.methods k) in
+    if Class.typ k = base_klass_type then
+      ms' @ ms
+    else
+      findall_appliable_methods ct k x ts (ms' @ ms)
+  in
+    findall_appliable_methods ct k x ts [] 
+
 let choice_most_specific_method ct k x ts =
-  let appliable_methods = L.filter begin fun m ->
-    let ts' = L.map snd (Method.params m) in
-    Method.name m = x
-      && L.length ts = L.length ts'
-      && L.for_all2 (is_subclass ct) ts' ts
-  end (Class.methods k) in
+  let appliable_methods = findall_appliable_methods ct k x ts in
   if L.length appliable_methods = 0 then
     raise (Type_error (sprintf "the method `%s` cannot be applied to given types." x));
   let distance_list = L.map begin fun m ->
