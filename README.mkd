@@ -1,4 +1,4 @@
-fj: implementation of Fetherweight Java
+fj: implementation of Featherweight Java
 ====
 
 ## Requirement
