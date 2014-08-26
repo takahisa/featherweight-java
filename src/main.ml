@@ -25,7 +25,7 @@ let _ =
   Arg.parse
     []
     (fun file -> files := !files @ [file])
-    ("fjc: fetherweight java compiler Copyright(c) Takahisa Watanabe\n" ^
+    ("fjc: featherweight java compiler Copyright(c) Takahisa Watanabe\n" ^
      "  usage: fjc [<option>] <file0> <file1> ...\n");
   List.iter begin fun f ->
     let channel = open_in f in
