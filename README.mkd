@@ -1,12 +1,25 @@
-fj: implementation of Featherweight Java
+An implementation of Featherweight-Java in OCaml.
 ====
 
-## Requirement
+## About
 
-- OCaml >= 4.01.0
-- OMake
-- OUnit
+An experimental implementation of (extended) featherweight-java (FJ) written in OCaml.   
+The original version of FJ is a semantics model which simplified the Java language, by Igarasi, Pierce, Wadler. [1]
 
+## How to build
+
+Install [OPAM](https://opam.ocaml.org/) into your system, and run the following commands.
+```
+  opam switch 4.01.0 # require 4.01.0 or later
+  opam install ounit omake
+  opam install menhir # optional
+  omake
+```
+    
 ## Reference
 
-[1] Igarashi, Pierce, Wadler. Featherweight Java: A Minimal Core Calculus for Java and GJ. ACM Transactions on Programming Languages and Systems 2001.
+- Igarashi, Pierce, Wadler. Featherweight Java: A Minimal Core Calculus for Java and GJ. ACM Transactions on Programming Languages and Systems 2001.
+
+## License
+
+this repository is licensed under the [MIT License](https://raw.githubusercontent.com/linerlock/featherweight-java/master/LICENSE.txt)
