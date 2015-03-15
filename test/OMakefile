@@ -1,5 +1,5 @@
 # 
-# Copyright (c) 2014 Takahisa Watanabe <linerlock@outlook.com> All rights reserved.
+# Copyright (c) 2014 - 2015 Takahisa Watanabe <linerlock@outlook.com> All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,42 +19,43 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 # 
-USE_OCAMLFIND = true
+PROGRAM = fj_test
+SOURCE_ROOT_DIRECTORY = .
 
 if $(not $(OCAMLFIND_EXISTS))
    eprintln(You need to install ocamlfind and run "omake --configure")
    exit 1
 
+USE_OCAMLFIND  = true
+BYTE_ENABLED   = not $(OCAMLOPT_EXISTS)
+NATIVE_ENABLED = $(OCAMLOPT_EXISTS)
+
 OCAMLPACKS[] =
-  oUnit
+   oUnit
 
-OCAML_LIBS += ../lib/libfj
-OCAML_LIB_FLAGS +=
+OCAMLFLAGS              += -thread -annot -g
+OCAMLCFLAGS             += -g
+OCAMLOPTFLAGS           +=
+OCAML_LINK_FLAGS        +=
+OCAML_BYTE_LINK_FLAGS   +=
+OCAML_NATIVE_LINK_FLAGS +=
+OCAML_LIBS              += ../fj
+OCAML_CLIBS             +=
+OCAML_OTHER_LIBS        +=
+OCAML_LIB_FLAGS         +=
+OCAMLINCLUDES           += ../
+FILES[] =
 
-OCAML_CLIBS +=
-OCAML_OTHER_LIBS +=
+OCAML_GENERATED_FILES[] =
+FILES += $(removesuffix $(OCAML_GENERATED_FILES))
+FILES += $(removesuffix $(filter %.ml, $(ls $(SOURCE_ROOT_DIRECTORY))))
 
-OCAMLFLAGS += -thread -annot -g
-OCAMLCFLAGS += -g
-
-BYTE_ENABLED = true
-OCAML_BYTE_LINK_FLAGS +=
-
-OCAMLINCLUDES += ../lib
-
-FILES[] = $(removesuffix $(filter %.ml, $(ls R, ./)))
-
-
-.PHONY: build clean check
+.PHONY: build check clean
 .DEFAULT: build
 
-PROGRAM = fjTest
-
 build: $(OCamlProgram $(PROGRAM), $(FILES))
-
 check: build
-       ./$(PROGRAM)
-
-clean:
-  rm -rf *.omc *.cmx *.cmxa *.cmo *.cmi *.a *.o *.out *.run *~ *.annot
-  rm -f $(PROGRAM) $(PROGRAM).* *.cache
+    ./$(PROGRAM)
+clean: 
+    $(RM) *.cmx *.cmxa *.cmo *.cmi *.o *.cma *.a *.run *.annot *.out *~ \
+      $(PROGRAM) $(PROGRAM).opt $(OCAML_GENERATED_FILES)
